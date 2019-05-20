@@ -1,0 +1,27 @@
+\documentclass[float=false, crop=true]{standalone}
+\usepackage{import}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{document}
+
+
+
+\begin{tikzpicture}
+\begin{axis}
+[name=plot,width=.5\textwidth, xmin=0,xmax=8, ymin=0,ymax=1.25,
+xlabel={x(cm)}, ylabel={$\bar{F}$ (N/N)},
+ytick={0,0.25,0.50,0.75,1.00,1.25},
+yticklabels={0,0.25,0.50,0.75,1.00,1.25}]
+%
+\addplot[color=blue,line width=.06 cm] table[]{./Raw Data/data2.txt};\label{plot}
+
+\end{axis}
+\node[anchor=south east,draw=black] at ($(plot.south east)-(1 mm,-1 mm)$) {\begin{tabular}{l l}
+data2.txt & \ref{plot} \\
+\end{tabular}};
+\end{tikzpicture}
+
+\end{document}

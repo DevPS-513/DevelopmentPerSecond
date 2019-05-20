@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=30mm,right=30mm,
+ top=20mm,
+ }
+\usepackage{csvsimple}
+\usepackage[utf8]{inputenc}
+%\usepackage{natbib}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage[nottoc,numbib]{tocbibind} % includes references in TOC
+\usepackage{bibentry}
+\usepackage{grffile}
+
+\usepackage{pgfplotstable}
+
+\title{A Coggless Force-Feedback Actuator with Applications for Wave Energy Converters}
+\author{Max Bethune-Waddell}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{tabular}{ r l }
+Supervisor:                         & Dr. Bradley J. Buckham \\
+{}                                  & Department of Mechanical Engineering \\
+{}                                  & {} \\
+Department Committee Member:        & Dr. Ben Nadler \\
+ {}                               & Department of Mechanical Engineering  \\
+{}                               & {}  \\
+Outside Committee Member:           & Dr. Pan Agathoklis\\
+   {}                               & Department of Electrical Engineering  \\
+\end{tabular}
+
+\clearpage
+\tableofcontents
+
+
+\clearpage
+
+
+\section{Chapter 1}
+
+\subsection{General Problem Statement}
+
+The generation of electricity from the ocean via wave energy converters (WECs) is a renewable energy solution for many coastal populations. As an example, consider Figure~\ref{fig:AOE_full_and_model_scale} that shows a WEC developed by Accumulated Ocean Energies Inc. (AOE) where a float is connected to a spar by a power take off unit (PTO)~\cite{ThacherMA2015}. This kind of WEC topology is called a point absorber. The basic operating principal of a point absorber is that the PTO exerts a force between the float and spar in order to resonate with the incoming waves and generate electricity. In the case of Figure~\ref{fig:AOE_full_and_model_scale} this force is used to compress atmospheric air within accumulator tanks which is then discharged to spin a generator turbine. In this way, the PTO is a large factor in the control of the device dynamics, making it a critical component. As seen in Figure~\ref{fig:AOE_full_and_model_scale}, the full scale device is quite large and a small scale model would be beneficial in testing and iterating a WEC design. The float, spar, and other features may be scaled according to well established laws developed from marine engineering such as in~\cite[pg.11]{HydrodynamicsScalingSteen2014}, however, it is often not possible to scale the PTO according to these same laws~\cite{HughesScaling1993,BeattyScaling2010}. This is because most PTOs will operate using hydraulics or pneumatics and these mechanisms are difficult to scale in size. This means that the accumulator tank, ballast tank, and valves inbetween them for the device in Figure~\ref{fig:AOE_full_and_model_scale}, simply cannot operate at model scale. For example, friction within a hydraulic or pneumatic device at model scale may be on the same order of magnitude as the PTO forces needed and so it becomes physically impossible to accurately discern between intended and parasitic forces during a model test. As an alternative, an electric linear actuator may be used at model scale to mimic the forces of the full scale PTO. This was the approach taken by the authors in~\cite{Beatty2015} who cited future work as improving quality of the actuator used. In this work, an actuator ideal for emulating PTO forces at model scale was developed. It improves the testing and validation process of a wide variety of PTOs and their control strategies. The main contribution of this thesis is simplifying the work required by any future researcher or developer in the construction of their scaled PTO if they use the actuator presented. The previous re-occurring engineering problems of control and integration of a model PTO faced in such works as~\cite{Beattyenrg2017,Beatty2015,Bryce_Mitacs_Report_2017,Bailey2009} will be simplified and greatly reduced so that the researcher can instead focus on the more important matter of hydrodynamic design of their WEC and its implementation as a renewable source of energy.
+
+%% Figure 1
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}
+    \node[] (pic) at (0,0) {\includegraphics[]{"./Figures Chapter 1/01 Ocean and Model Scale".pdf}};
+    \end{tikzpicture}
+    \caption{\label{fig:AOE_full_and_model_scale}A WEC in development by Accumulated Ocean Energy Inc. (AOE)[3]. It is impractical and costly to test the device at full scale. Instead, a model scale replica is needed. A house is highlighted in green to show the relative scale.}
+\end{figure}
+\clearpage 
+\subsection{Background}
+
+
+During the present century, the extraction of power from the ocean via wave energy converters (\textbf{WEC}s) has begun to increase for two main reasons. Firstly, as part of the effort to find renewable alternatives to fossil fuels. Second, as a route to energy independence and long term energy security for coastal populations. For example, many remote communities have to ship in diesel, such as Bull Harbour and Hope Island in BC~\cite{CANGOVREMOTE2011}. The most pressing problems in wave energy conversion is the lack of design convergence~\cite{ShamiPAReview2018} and the related cost of development. Whereas other renewable technologies such as wind power have settled on a single design that is merely scaled up or down based on its intended load, the best design for a wave energy conversion device is still an active area of research~\cite{ShamiPAReview2018}.The use of WECs has potential in several countries, as shown in Figure~\ref{fig:Energy Capacity by Country} where wave resource estimates made by~\cite{GUNN2012} are shown by country. These countries have the most reason to pursue WEC technology.
+
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}
+    \node[] (pic) at (0,0) {\includegraphics[]{"./Figures Chapter 1/02 Force Profile Plot".pdf}};
+    \end{tikzpicture}
+    \caption{\label{fig:AOE_force_profile} The force developed in the PTO from the work on the WEC in figure~\ref{fig:AOE_full_and_model_scale} is shown in (a) along with the relative displacement in heave in (b).}
+\end{figure}
+
+
+\bibliography{bibliography.bib}
+\bibliographystyle{unsrt}
+
+
+
+ \clearpage
+
+\end{document}
