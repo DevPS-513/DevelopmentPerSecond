@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{import}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+
+
+\newcommand{\makefigure}[1]{
+\begin{tikzpicture}
+
+\begin{axis}
+[name=plotA,xmin=0,xmax=20,
+ymin=0,ymax=70,width=.5\textwidth,
+xlabel={x (mm)}, ylabel={F (N)}]
+% Compare 0.5 in data with simulation
+\addplot[color=blue,mark=x] table{./Data/Experiment_A.dat};\label{kj_50}
+\addplot[color=red] table{./Data/Simulation_A.dat};\label{sim_50}
+\end{axis}
+
+%% Compare 2X2 in data
+\begin{axis}
+[name=plotB,anchor=outer south west, at=(plotA.outer south east),xmin=0,xmax=20,ymin=0,ymax=200, width=.5\textwidth,
+xlabel={x (mm)}, ylabel={F (N)}]
+\addplot[color=blue,mark =x] table{./Data/Experiment_B.dat};\label{kj_200}
+\addplot[color=red] table{./Data/Simulation_B.dat};\label{sim_200}
+
+ % Draw picture above
+
+
+\end{axis}
+
+\node[anchor=north east,draw=black] (legend) at ($(plotA.north east)-(1 mm,1 mm)$) {\begin{tabular}{l l}
+{K\&J Inc.}~#1 & \ref{kj_200} \\
+{Simulation} & \ref{sim_200} \\
+\end{tabular}};
+
+\node[anchor=north] (magnet graphic) at (legend.south) {\includegraphics[width = 2.8cm]{"./Pictures/Magnet Picture".pdf}};
+\node[anchor=south] at (magnet graphic) {x};
+
+
+
+\node[anchor=north west] at ($(plotA.north west)+(1 mm, 0)$) {(a)};
+\node[anchor=north west] at ($(plotB.north west)+(1 mm, 0)$) {(b)};
+
+\end{tikzpicture}
+}
+    
+
+
+
+\begin{document}
+
+\section{Introduction}
+
+Shown in figure~\ref{fig:mag_force} is a comparison of simulation and experiment for the force between two magnets. Data is shown from $x=0$ to $x=40$.
+
+\begin{figure}[!ht]
+    \makefigure{\cite{KJ_D88_N52}}
+    
+    \caption{\label{fig:mag_force} This compares the force between to magnets from experiment and simulation, they are in general agreement}
+\end{figure}
+
+
+
+\bibliography{bibliography.bib}
+\bibliographystyle{plain}
+
+
+\end{document}
